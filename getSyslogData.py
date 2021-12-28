@@ -7,6 +7,7 @@ def evaluateData(data):
     colorLevel = Fore.RESET
     data = data[endLevelData:]
     level = 'Level'
+    SyslogLevel = 'SyslogLevel'
     facility = 'Facility'
     host = 'Host'
     #User
@@ -270,5 +271,15 @@ def evaluateData(data):
     data = data[endHost:]
     print(colorLevel + dateData + level + Fore.RESET + data)
     mensage = dateData + level + data
-    sysLevel = [level,mensage,host,facility]
+    if(level == '[DEBUG]'):
+        SyslogLevel = 'debug'
+    elif(level == '[INFO]'):
+        SyslogLevel = 'info'
+    elif(level == '[WARNIG]'):
+        SyslogLevel = 'warning'
+    elif(level == '[ERROR]'):
+        SyslogLevel = 'err'
+    elif(level == '[CRITICAL]'):
+        SyslogLevel = 'crit'
+    sysLevel = [level,data,host,facility,SyslogLevel,dateData]
     return sysLevel

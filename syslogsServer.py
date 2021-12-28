@@ -8,18 +8,29 @@ import getSyslogData as sd
 HOST		= '0.0.0.0'
 UDP_PORT 	= 514
 listening   = False
+SyslogFolder = 'C:\\ProgramData\\CI24\\Logs\\Syslog'
 
 class UDPHandler(socketserver.BaseRequestHandler):
 	def handle(self):
 		data = self.request[0].strip()
 		data = str(data)
+		IPHost = self.client_address[0]
 		scanData = sd.evaluateData(data)
-		logPath = 'E:\\Logs\\'
-		if(os.path.exists(logPath + scanData[2]) == False):
-			os.makedirs(logPath + scanData[2])
-		os.chdir(logPath + scanData[2])
+		SyslogFolder = 'C:\\ProgramData\\CI24\\Logs\\Syslog'
+		if(os.path.exists(SyslogFolder) == False):
+			os.makedirs(SyslogFolder)
+		os.chdir(SyslogFolder)
+		SyslogMSG = IPHost + '\t' + scanData[5][:-1] + '\t' + scanData[2] + '\t' + scanData[3] + '\t' + scanData[4] + '\t\t' + scanData[1]
+		SyslogFile = open('syslog','a')
+		SyslogFile.write(SyslogMSG)
+		SyslogFile.write('\n')
+		logFolder = SyslogFolder + '\\' + scanData[2]
+		if(os.path.exists(logFolder) == False):
+			os.makedirs(logFolder)
+		os.chdir(logFolder)
 		logFile = open((str(date.today()) + '.log'),'a')
-		logFile.write(scanData[1])
+		HostMSG = scanData[5] + scanData[0] + scanData[1]
+		logFile.write(HostMSG)
 		logFile.write('\n')
 
 if __name__ == "__main__":
