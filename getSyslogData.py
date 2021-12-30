@@ -6,272 +6,97 @@ def evaluateData(data):
     levelData = data[0:endLevelData]
     colorLevel = Fore.RESET
     data = data[endLevelData:]
-    level = 'Level'
-    SyslogLevel = 'SyslogLevel'
-    facility = 'Facility'
     host = 'Host'
-    #User
-    if(levelData == '<15>'):
-        level = '[DEBUG]'
-        facility = 'User'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<14>'):
-        level = '[INFO]'
-        facility = 'User'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<12>'):
-        level = '[WARNIG]'
-        facility = 'User'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<11>'):
-        level = '[ERROR]'
-        facility = 'User'
-        colorLevel = Fore.RED
-    elif(levelData == '<10>'):
-        level = '[CRITICAL]'
-        facility = 'User'
-        colorLevel = Fore.MAGENTA
-    #System
-    elif(levelData == '<31>'):
-        level = '[DEBUG]'
-        facility = 'System'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<30>'):
-        level = '[INFO]'
-        facility = 'System'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<28>'):
-        level = '[WARNIG]'
-        facility = 'System'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<27>'):
-        level = '[ERROR]'
-        facility = 'System'
-        colorLevel = Fore.RED
-    elif(levelData == '<26>'):
-        level = '[CRITICAL]'
-        facility = 'System'
-        colorLevel = Fore.MAGENTA
-    #Audit
-    elif(levelData == '<111>'):
-        level = '[DEBUG]'
-        facility = 'Audit'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<110>'):
-        level = '[INFO]'
-        facility = 'Audit'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<108>'):
-        level = '[WARNIG]'
-        facility = 'Audit'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<107>'):
-        level = '[ERROR]'
-        facility = 'Audit'
-        colorLevel = Fore.RED
-    elif(levelData == '<106>'):
-        level = '[CRITICAL]'
-        facility = 'Audit'
-        colorLevel = Fore.MAGENTA
-    #Alert
-    elif(levelData == '<119>'):
-        level = '[DEBUG]'
-        facility = 'Alert'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<118>'):
-        level = '[INFO]'
-        facility = 'Alert'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<116>'):
-        level = '[WARNIG]'
-        facility = 'Alert'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<115>'):
-        level = '[ERROR]'
-        facility = 'Alert'
-        colorLevel = Fore.RED
-    elif(levelData == '<114>'):
-        level = '[CRITICAL]'
-        facility = 'Alert'
-        colorLevel = Fore.MAGENTA
-    #Local0
-    elif(levelData == '<135>'):
-        level = '[DEBUG]'
-        facility = 'Local0'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<134>'):
-        level = '[INFO]'
-        facility = 'Local0'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<132>'):
-        level = '[WARNIG]'
-        facility = 'Local0'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<131>'):
-        level = '[ERROR]'
-        facility = 'Local0'
-        colorLevel = Fore.RED
-    elif(levelData == '<130>'):
-        level = '[CRITICAL]'
-        facility = 'Local0'
-        colorLevel = Fore.MAGENTA
-    #Local1
-    elif(levelData == '<143>'):
-        level = '[DEBUG]'
-        facility = 'Local1'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<142>'):
-        level = '[INFO]'
-        facility = 'Local1'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<140>'):
-        level = '[WARNIG]'
-        facility = 'Local1'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<139>'):
-        level = '[ERROR]'
-        facility = 'Local1'
-        colorLevel = Fore.RED
-    elif(levelData == '<138>'):
-        level = '[CRITICAL]'
-        facility = 'Local1'
-        colorLevel = Fore.MAGENTA
-    #Local2
-    elif(levelData == '<151>'):
-        level = '[DEBUG]'
-        facility = 'Local2'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<150>'):
-        level = '[INFO]'
-        facility = 'Local2'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<148>'):
-        level = '[WARNIG]'
-        facility = 'Local2'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<147>'):
-        level = '[ERROR]'
-        facility = 'Local2'
-        colorLevel = Fore.RED
-    elif(levelData == '<146>'):
-        level = '[CRITICAL]'
-        facility = 'Local2'
-        colorLevel = Fore.MAGENTA
-    #Local3
-    elif(levelData == '<159>'):
-        level = '[DEBUG]'
-        facility = 'Local3'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<158>'):
-        level = '[INFO]'
-        facility = 'Local3'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<156>'):
-        level = '[WARNIG]'
-        facility = 'Local3'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<155>'):
-        level = '[ERROR]'
-        facility = 'Local3'
-        colorLevel = Fore.RED
-    elif(levelData == '<154>'):
-        level = '[CRITICAL]'
-        facility = 'Local3'
-        colorLevel = Fore.MAGENTA
-    #Local4
-    elif(levelData == '<167>'):
-        level = '[DEBUG]'
-        facility = 'Local4'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<166>'):
-        level = '[INFO]'
-        facility = 'Local4'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<164>'):
-        level = '[WARNIG]'
-        facility = 'Local4'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<163>'):
-        level = '[ERROR]'
-        facility = 'Local4'
-        colorLevel = Fore.RED
-    elif(levelData == '<162>'):
-        level = '[CRITICAL]'
-        facility = 'Local4'
-        colorLevel = Fore.MAGENTA
-    #Local5
-    elif(levelData == '<175>'):
-        level = '[DEBUG]'
-        facility = 'Local5'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<174>'):
-        level = '[INFO]'
-        facility = 'Local5'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<172>'):
-        level = '[WARNIG]'
-        facility = 'Local5'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<171>'):
-        level = '[ERROR]'
-        facility = 'Local5'
-        colorLevel = Fore.RED
-    elif(levelData == '<170>'):
-        level = '[CRITICAL]'
-        facility = 'Local5'
-        colorLevel = Fore.MAGENTA
-    #Local6
-    elif(levelData == '<183>'):
-        level = '[DEBUG]'
-        facility = 'Local6'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<182>'):
-        level = '[INFO]'
-        facility = 'Local6'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<180>'):
-        level = '[WARNIG]'
-        facility = 'Local6'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<179>'):
-        level = '[ERROR]'
-        facility = 'Local6'
-        colorLevel = Fore.RED
-    elif(levelData == '<178>'):
-        level = '[CRITICAL]'
-        facility = 'Local6'
-        colorLevel = Fore.MAGENTA
-    #Local7
-    elif(levelData == '<191>'):
-        level = '[DEBUG]'
-        facility = 'Local7'
-        colorLevel = Fore.CYAN
-    elif(levelData == '<190>'):
-        level = '[INFO]'
-        facility = 'Local7'
-        colorLevel = Fore.GREEN
-    elif(levelData == '<188>'):
-        level = '[WARNIG]'
-        facility = 'Local7'
-        colorLevel = Fore.YELLOW
-    elif(levelData == '<187>'):
-        level = '[ERROR]'
-        facility = 'Local7'
-        colorLevel = Fore.RED
-    elif(levelData == '<186>'):
-        level = '[CRITICAL]'
-        facility = 'Local7'
-        colorLevel = Fore.MAGENTA
-    else:
-        level = 'Nivel no encontrado'
+    scanSyslogData = {
+        #User
+        '<15>':{'level': '[DEBUG]', 'facility': 'User', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<14>':{'level': '[INFO]', 'facility': 'User', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<12>':{'level': '[WARNIG]', 'facility': 'User', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<11>':{'level': '[ERROR]', 'facility': 'User', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<10>':{'level': '[CRITICAL]', 'facility': 'User', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #System
+        '<31>':{'level': '[DEBUG]', 'facility': 'System', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<30>':{'level': '[INFO]', 'facility': 'System', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<28>':{'level': '[WARNIG]', 'facility': 'System', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<27>':{'level': '[ERROR]', 'facility': 'System', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<26>':{'level': '[CRITICAL]', 'facility': 'System', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Audit
+        '<111>':{'level': '[DEBUG]', 'facility': 'Audit', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<110>':{'level': '[INFO]', 'facility': 'Audit', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<108>':{'level': '[WARNIG]', 'facility': 'Audit', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<107>':{'level': '[ERROR]', 'facility': 'Audit', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<106>':{'level': '[CRITICAL]', 'facility': 'Audit', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Alert
+        '<119>':{'level': '[DEBUG]', 'facility': 'Alert', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<118>':{'level': '[INFO]', 'facility': 'Alert', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<116>':{'level': '[WARNIG]', 'facility': 'Alert', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<115>':{'level': '[ERROR]', 'facility': 'Alert', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<114>':{'level': '[CRITICAL]', 'facility': 'Alert', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Local0
+        '<135>':{'level': '[DEBUG]', 'facility': 'Local0', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<134>':{'level': '[INFO]', 'facility': 'Local0', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<132>':{'level': '[WARNIG]', 'facility': 'Local0', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<131>':{'level': '[ERROR]', 'facility': 'Local0', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<130>':{'level': '[CRITICAL]', 'facility': 'Local0', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Local1
+        '<143>':{'level': '[DEBUG]', 'facility': 'Local1', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<142>':{'level': '[INFO]', 'facility': 'Local1', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<140>':{'level': '[WARNIG]', 'facility': 'Local1', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<139>':{'level': '[ERROR]', 'facility': 'Local1', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<138>':{'level': '[CRITICAL]', 'facility': 'Local1', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Local2
+        '<151>':{'level': '[DEBUG]', 'facility': 'Local2', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<150>':{'level': '[INFO]', 'facility': 'Local2', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<148>':{'level': '[WARNIG]', 'facility': 'Local2', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<147>':{'level': '[ERROR]', 'facility': 'Local2', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<146>':{'level': '[CRITICAL]', 'facility': 'Local2', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Local3
+        '<159>':{'level': '[DEBUG]', 'facility': 'Local3', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<158>':{'level': '[INFO]', 'facility': 'Local3', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<156>':{'level': '[WARNIG]', 'facility': 'Local3', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<155>':{'level': '[ERROR]', 'facility': 'Local3', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<154>':{'level': '[CRITICAL]', 'facility': 'Local3', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Local4
+        '<167>':{'level': '[DEBUG]', 'facility': 'Local4', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<166>':{'level': '[INFO]', 'facility': 'Local4', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<164>':{'level': '[WARNIG]', 'facility': 'Local4', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<163>':{'level': '[ERROR]', 'facility': 'Local4', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<162>':{'level': '[CRITICAL]', 'facility': 'Local4', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Local5
+        '<175>':{'level': '[DEBUG]', 'facility': 'Local5', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<174>':{'level': '[INFO]', 'facility': 'Local5', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<172>':{'level': '[WARNIG]', 'facility': 'Local5', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<171>':{'level': '[ERROR]', 'facility': 'Local5', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<170>':{'level': '[CRITICAL]', 'facility': 'Local5', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Local6
+        '<183>':{'level': '[DEBUG]', 'facility': 'Local6', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<182>':{'level': '[INFO]', 'facility': 'Local6', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<180>':{'level': '[WARNIG]', 'facility': 'Local6', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<179>':{'level': '[ERROR]', 'facility': 'Local6', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<178>':{'level': '[CRITICAL]', 'facility': 'ULocal6ser', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+        #Local7
+        '<191>':{'level': '[DEBUG]', 'facility': 'Local7', 'SyslogLevel': 'debug', 'colorLevel': Fore.CYAN},
+        '<190>':{'level': '[INFO]', 'facility': 'Local7', 'SyslogLevel': 'info', 'colorLevel': Fore.GREEN},
+        '<188>':{'level': '[WARNIG]', 'facility': 'Local7', 'SyslogLevel': 'warning', 'colorLevel': Fore.YELLOW},
+        '<187>':{'level': '[ERROR]', 'facility': 'Local7', 'SyslogLevel': 'err', 'colorLevel': Fore.RED},
+        '<186>':{'level': '[CRITICAL]', 'facility': 'Local7', 'SyslogLevel': 'crit', 'colorLevel': Fore.MAGENTA},
+    }
+    try:
+        getDataScan = scanSyslogData[levelData]
+    except KeyError:
+        getDataScan = {'level': 'Nivel no encontrado', 'facility': 'System', 'SyslogLevel': 'warning', 'colorLevel': Fore.RESET}
     dateData = data[:16]
     data = data[16:]
     endHost = data.find(' ')
     host = data[:endHost]
     data = data[endHost:]
+    level = getDataScan['level']
+    facility = getDataScan['facility']
+    colorLevel = getDataScan['colorLevel']
     print(colorLevel + dateData + level + Fore.RESET + data)
     mensage = dateData + level + data
-    if(level == '[DEBUG]'):
+    SyslogLevel = getDataScan['SyslogLevel']
+    '''if(level == '[DEBUG]'):
         SyslogLevel = 'debug'
     elif(level == '[INFO]'):
         SyslogLevel = 'info'
@@ -280,6 +105,7 @@ def evaluateData(data):
     elif(level == '[ERROR]'):
         SyslogLevel = 'err'
     elif(level == '[CRITICAL]'):
-        SyslogLevel = 'crit'
-    sysLevel = [level,data,host,facility,SyslogLevel,dateData]
-    return sysLevel
+        SyslogLevel = 'crit'''
+    #sysData= [level,data,host,facility,SyslogLevel,dateData,getDataScan]
+    sysData = {'dateData':dateData,'level':level,'host':host,'data':data,'facility':facility,'SyslogLevel':SyslogLevel}
+    return sysData

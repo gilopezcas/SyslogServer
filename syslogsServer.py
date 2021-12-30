@@ -3,7 +3,7 @@ import threading
 import socketserver
 import os
 from datetime import date
-import getSyslogData as sd
+import getSyslogData as gsd
 
 HOST		= '0.0.0.0'
 UDP_PORT 	= 514
@@ -15,21 +15,23 @@ class UDPHandler(socketserver.BaseRequestHandler):
 		data = self.request[0].strip()
 		data = str(data)
 		IPHost = self.client_address[0]
-		scanData = sd.evaluateData(data)
+		scanData = gsd.evaluateData(data)
+		#print(scanData[-1]['level'])
+		#print(type(scanData[-1]))
 		SyslogFolder = 'C:\\ProgramData\\CI24\\Logs\\Syslog'
 		if(os.path.exists(SyslogFolder) == False):
 			os.makedirs(SyslogFolder)
 		os.chdir(SyslogFolder)
-		SyslogMSG = IPHost + '\t' + scanData[5][:-1] + '\t' + scanData[2] + '\t' + scanData[3] + '\t' + scanData[4] + '\t\t' + scanData[1]
+		SyslogMSG = IPHost + '\t' + scanData['dateData'][:-1] + '\t' + scanData['host'] + '\t' + scanData['facility'] + '\t' + scanData['SyslogLevel'] + '\t\t' + scanData['data']
 		SyslogFile = open('syslog','a')
 		SyslogFile.write(SyslogMSG)
 		SyslogFile.write('\n')
-		logFolder = SyslogFolder + '\\' + scanData[2]
+		logFolder = SyslogFolder + '\\' + scanData['host']
 		if(os.path.exists(logFolder) == False):
 			os.makedirs(logFolder)
 		os.chdir(logFolder)
 		logFile = open((str(date.today()) + '.log'),'a')
-		HostMSG = scanData[5] + scanData[0] + scanData[1]
+		HostMSG = scanData['dateData'] + scanData['level'] + scanData['data']
 		logFile.write(HostMSG)
 		logFile.write('\n')
 
