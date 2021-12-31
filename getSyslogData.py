@@ -96,16 +96,5 @@ def evaluateData(data):
     print(colorLevel + dateData + level + Fore.RESET + data)
     mensage = dateData + level + data
     SyslogLevel = getDataScan['SyslogLevel']
-    '''if(level == '[DEBUG]'):
-        SyslogLevel = 'debug'
-    elif(level == '[INFO]'):
-        SyslogLevel = 'info'
-    elif(level == '[WARNIG]'):
-        SyslogLevel = 'warning'
-    elif(level == '[ERROR]'):
-        SyslogLevel = 'err'
-    elif(level == '[CRITICAL]'):
-        SyslogLevel = 'crit'''
-    #sysData= [level,data,host,facility,SyslogLevel,dateData,getDataScan]
     sysData = {'dateData':dateData,'level':level,'host':host,'data':data,'facility':facility,'SyslogLevel':SyslogLevel}
     return sysData

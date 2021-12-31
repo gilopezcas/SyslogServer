@@ -4,6 +4,7 @@ import socketserver
 import os
 from datetime import date
 import getSyslogData as gsd
+import fileManagement as fm
 
 HOST		= '0.0.0.0'
 UDP_PORT 	= 514
@@ -16,24 +17,12 @@ class UDPHandler(socketserver.BaseRequestHandler):
 		data = str(data)
 		IPHost = self.client_address[0]
 		scanData = gsd.evaluateData(data)
-		#print(scanData[-1]['level'])
-		#print(type(scanData[-1]))
 		SyslogFolder = 'C:\\ProgramData\\CI24\\Logs\\Syslog'
-		if(os.path.exists(SyslogFolder) == False):
-			os.makedirs(SyslogFolder)
-		os.chdir(SyslogFolder)
 		SyslogMSG = IPHost + '\t' + scanData['dateData'][:-1] + '\t' + scanData['host'] + '\t' + scanData['facility'] + '\t' + scanData['SyslogLevel'] + '\t\t' + scanData['data']
-		SyslogFile = open('syslog','a')
-		SyslogFile.write(SyslogMSG)
-		SyslogFile.write('\n')
+		fm.management(SyslogFolder, 'syslog', 30, SyslogMSG)
 		logFolder = SyslogFolder + '\\' + scanData['host']
-		if(os.path.exists(logFolder) == False):
-			os.makedirs(logFolder)
-		os.chdir(logFolder)
-		logFile = open((str(date.today()) + '.log'),'a')
 		HostMSG = scanData['dateData'] + scanData['level'] + scanData['data']
-		logFile.write(HostMSG)
-		logFile.write('\n')
+		fm.management(logFolder, (str(date.today()) + '.log'), 30, HostMSG)
 
 if __name__ == "__main__":
 	listening = True
