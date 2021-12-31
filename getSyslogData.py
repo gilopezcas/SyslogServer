@@ -1,3 +1,7 @@
+#Scan the syslog data received, getting level, facility, host and mensaje,
+#converting to string and print in console with colors to diference de level
+#Version 1.0.1
+
 from colorama import init, Fore
 init(autoreset=True)
 def evaluateData(data):
