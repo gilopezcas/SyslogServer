@@ -1,3 +1,6 @@
+#Syslog Server 1.0.3
+#UDP SyslogServer
+
 import time
 import threading
 import socketserver
@@ -6,9 +9,8 @@ from datetime import date
 import getSyslogData as gsd
 import fileManagement as fm
 
-HOST		= '0.0.0.0'
-UDP_PORT 	= 514
-listening   = False
+serverHOST = '0.0.0.0'
+portUDP = 514
 SyslogFolder = 'C:\\ProgramData\\CI24\\Logs\\Syslog'
 
 class UDPHandler(socketserver.BaseRequestHandler):
@@ -25,9 +27,8 @@ class UDPHandler(socketserver.BaseRequestHandler):
 		fm.management(logFolder, (str(date.today()) + '.log'), 30, HostMSG)
 
 if __name__ == "__main__":
-	listening = True
 	try:
-		udpServer = socketserver.UDPServer((HOST, UDP_PORT), UDPHandler)
+		udpServer = socketserver.UDPServer((serverHOST, portUDP), UDPHandler)
 		udpThread = threading.Thread(target=udpServer.serve_forever)
 		udpThread.daemon = True
 		udpThread.start()
@@ -38,7 +39,6 @@ if __name__ == "__main__":
 	except (IOError, SystemExit):
 		raise
 	except KeyboardInterrupt:
-		listening = False
 		udpServer.shutdown()
 		udpServer.server_close()
 		print ("Crtl+C Pressed. Shutting down.")
