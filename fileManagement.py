@@ -1,3 +1,6 @@
+#Creation a specific number of files to save de syslog data
+#Version 1.0.0
+
 import os
 from os import remove
 
